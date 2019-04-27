@@ -9,4 +9,9 @@ class LanguagePack::CustomRails6 < LanguagePack::Rails5
     end
   end
 
+  def run_assets_precompile_rake_task
+    puts "run_assets_precompile_rake_task invoked"
+    puts "TODO: copy yarn/npm cache directory"
+    super
+  end
 end

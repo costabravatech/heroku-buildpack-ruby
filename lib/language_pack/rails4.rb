@@ -81,7 +81,6 @@ WARNING
           return true
         end
 
-        # TODO: copy yarn/npm cache directory
         precompile = rake.task("assets:precompile")
         return true unless precompile.is_defined?
 
