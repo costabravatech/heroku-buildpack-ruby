@@ -6,12 +6,14 @@ class LanguagePack::Cache
   # @param [String] path to the cache store
   def initialize(cache_path)
     @cache_base = Pathname.new(cache_path)
+    puts "Creating LanguagePack::Cache in #{@cache_base}"
   end
 
   # removes the the specified path from the cache
   # @param [String] relative path from the cache_base
   def clear(path)
     target = (@cache_base + path)
+    puts "Clearing LanguagePack::Cache in #{target}"
     target.exist? && target.rmtree
   end
 
@@ -22,6 +24,7 @@ class LanguagePack::Cache
   # @param [String] path of contents to store. it will be stored using this a relative path from the cache_base.
   # @param [String] relative path to store the cache contents, if nil it will assume the from path
   def store(from, path = nil)
+    puts "Storing in LanguagePack::Cache: from #{from} to #{path}"
     path ||= from
     clear path
     copy from, (@cache_base + path)
@@ -30,6 +33,7 @@ class LanguagePack::Cache
   # Adds file to cache without clearing the destination
   # Use LanguagePack::Cache#store to avoid accidental cache bloat
   def add(from, path = nil)
+    puts "Adding in LanguagePack::Cache: from #{from} to #{path}"
     path ||= from
     copy from, (@cache_base + path)
   end
